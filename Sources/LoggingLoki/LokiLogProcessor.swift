@@ -13,10 +13,16 @@
 
 import AsyncAlgorithms
 import AsyncHTTPClient
-import Logging
+public import Logging
 import NIOHTTP1
-import ServiceLifecycle
+public import ServiceLifecycle
 import Synchronization
+
+#if canImport(FoundationEssentials)
+    import FoundationEssentials
+#else
+    import Foundation
+#endif
 
 /// A configuration object for ``LokiLogProcessor``.
 public struct LokiLogProcessorConfiguration: Sendable {
@@ -61,7 +67,8 @@ public struct LokiLogProcessorConfiguration: Sendable {
 
     /// Indicates the format of log messages sent to Loki.
     public struct LogFormat: Sendable {
-        public typealias CustomFormatter = @Sendable (Logger.Level, Logger.Message, Logger.Metadata)
+        public typealias CustomFormatter =
+            @Sendable (Logger.Level, Logger.Message, Logger.Metadata)
             -> String
 
         enum Code {

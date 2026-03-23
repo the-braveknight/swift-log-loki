@@ -11,9 +11,13 @@
 //
 //===----------------------------------------------------------------------===//
 
-import Logging
+public import Logging
 
-import class Foundation.ProcessInfo
+#if canImport(FoundationEssentials)
+    public import FoundationEssentials
+#else
+    public import Foundation
+#endif
 
 /// ``LokiLogHandler`` is a logging backend for `Logging`.
 public struct LokiLogHandler<Clock: _Concurrency.Clock>: LogHandler, Sendable
