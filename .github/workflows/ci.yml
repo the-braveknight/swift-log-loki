@@ -7,6 +7,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   soundness:
@@ -23,6 +24,12 @@ jobs:
       run: |
         scripts/soundness.sh
         exit $(git status --porcelain | wc -l)
+
+  foundation-linking:
+    name: Foundation linking
+    uses: vapor/ci/.github/workflows/check-foundation-linking.yml@main
+    with:
+      swift_image: swift:6.0-noble
 
   api-breakage:
     if: github.event_name == 'pull_request'
