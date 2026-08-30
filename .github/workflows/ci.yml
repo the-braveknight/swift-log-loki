@@ -29,7 +29,7 @@ jobs:
     name: Foundation linking
     uses: vapor/ci/.github/workflows/check-foundation-linking.yml@main
     with:
-      swift_image: swift:6.0-noble
+      swift_image: swift:6.1-noble
 
   api-breakage:
     if: github.event_name == 'pull_request'
@@ -48,7 +48,7 @@ jobs:
 
   tests:
     container:
-      image: swift:6.0-jammy
+      image: swift:6.1-jammy
 
     runs-on: ubuntu-latest
 
